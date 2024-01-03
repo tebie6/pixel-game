@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2023年度像素画游戏报告</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      color: #333;
+    }
+
+    .report-container {
+      width: 80%;
+      margin: 0 auto;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 10px;
+    }
+    /* 移动端样式，假设以768px作为移动和桌面端的分界点 */
+    @media (max-width: 768px) {
+      .report-container {
+        width: 90%;
+        margin: 0 auto;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        padding: 20px;
+        margin-bottom: 10px;
+      }
+    }
+
+    .report-header {
+      background-color: #444;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .report-section {
+      margin: 20px 0;
+    }
+
+    .report-section h2 {
+      background-color: #555;
+      color: #fff;
+      padding: 5px;
+      font-size: 20px;
+    }
+
+    /* 定义正方形的样式 */
+    .square {
+      width: 15px; /* 设置正方形的宽度 */
+      height: 15px; /* 设置正方形的高度 */
+      background-color: #000000; /* 设置背景颜色 */
+    }
+
+    li {
+      display: flex;
+      align-items: center; /* 垂直居中对齐 */
+      line-height: 25px;
+    }
+
+    /* 添加一些基本的样式 */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+    #image {
+      width: 100%; /* 初始宽度 */
+      height: auto; /* 保持图片纵横比 */
+      border: 1px solid #ddd;
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5); /* 半透明黑色阴影 */
+    }
+    /* 在这里添加 CSS 样式 */
+    .footer {
+      background-color: #252525;
+      padding: 5px;
+      text-align: center;
+      color: #fff !important;
+    }
+    .footer-links {
+      text-decoration: none;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+<div class="report-container">
+  <header class="report-header">
+    <h1>2023年度像素画游戏报告</h1>
+  </header>
+
+  <!-- 总体统计 -->
+  <section class="report-section">
+    <h2>总体统计</h2>
+    <div>
+      <p>总操作数（有效）: 332455</p>
+      <p>参与用户数: 1333</p>
+      <p>最活跃的用户: 鲜艳的大雁（9天）</p>
+      <p>第一条记录:
+        <ul>
+          <li>日期：2023-01-16 17:21:41</li>
+          <li>昵称：轻松的绿茶</li>
+          <li>位置：(145,75)</li>
+          <li><div class="text">颜色：</div><div class="square"></div></li>
+        </ul>
+      </p>
+    </div>
+
+    <h3>小时活跃统计（24小时）：</h3>
+    <h5>分析摸鱼时间</h5>
+    <!-- 在这里创建一个canvas元素来渲染图表 -->
+    <canvas id="hourly-activity-statistics"></canvas>
+  </section>
+
+  <!-- 用户活跃度分析 -->
+  <section class="report-section">
+    <h2>用户分析</h2>
+    <h3>用户活跃度分析（前20名）：</h3>
+    <div>
+      <table>
+        <thead>
+        <tr>
+          <th>排名</th>
+          <th>昵称</th>
+          <th>操作数</th>
+        </tr>
+        </thead>
+        <tbody id="user-activity-analysis">
+        </tbody>
+      </table>
+    </div>
+    <h3>破坏大王排行榜（前10名）：</h3>
+    <div>
+      <table>
+        <thead>
+        <tr>
+          <th>排名</th>
+          <th>昵称</th>
+          <th>破坏数量</th>
+        </tr>
+        </thead>
+        <tbody id="wrecking-king">
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 内容分析 -->
+  <section class="report-section">
+    <h2>内容分析</h2>
+    <h3>颜色使用频率（前20名）：</h3>
+    <div>
+      <table>
+        <thead>
+        <tr>
+          <th>排名</th>
+          <th>颜色</th>
+          <th>颜色编号</th>
+          <th>使用次数</th>
+        </tr>
+        </thead>
+        <tbody id="color-usage-frequency">
+        </tbody>
+      </table>
+    </div>
+
+    <h3>最活跃坐标点（前10名）：</h3>
+    <div>
+      <table>
+        <thead>
+        <tr>
+          <th>排名</th>
+          <th>位置</th>
+          <th>被操作次数</th>
+        </tr>
+        </thead>
+        <tbody id="most-active-coordinate-point">
+        </tbody>
+      </table>
+    </div>
+    <h3>游戏地址：<a href="https://game.tebie6.com" target="_blank">https://game.tebie6.com</a></h3>
+    <h3>画布内容：</h3>
+    <img src="./static/pixel/img/2023.png" id="image">
+  </section>
+  <!-- 更多部分... -->
+</div>
+<footer class="footer">
+  <p><a class="footer-links" href="https://beian.miit.gov.cn/">京ICP备15045416号-1</a> &copy;2015-2023 刘溟煜 All Rights Reserved</p>
+</footer>
+<script src="./static/pixel/js/chart.js"></script>
+<script>
+
+  let colorList = '{"1":"0,0,0","2":"85,85,85","3":"136,136,136","4":"205,205,205","0":"255,255,255","5":"255,213,188","6":"255,183,131","7":"182,109,61","8":"119,67,31","9":"252,117,16","10":"252,168,14","11":"253,232,23","12":"255,244,145","13":"190,255,64","14":"112,221,19","15":"49,161,23","16":"50,182,159","17":"136,255,243","18":"36,181,254","19":"18,92,199","20":"38,41,96","21":"139,47,168","22":"255,89,239","23":"255,169,217","24":"255,100,116","25":"240,37,35","26":"177,18,6","27":"116,12,0","100":"0,0,0","101":"105,105,105","102":"128,128,128","103":"169,169,169","104":"192,192,192","105":"211,211,211","106":"220,220,220","107":"245,245,245","108":"255,255,255","109":"128,0,0","110":"139,0,0","111":"178,34,34","112":"165,42,42","113":"255,0,0","114":"205,92,92","115":"188,143,143","116":"240,128,128","117":"255,250,250","118":"250,128,114","119":"255,228,225","120":"255,99,71","121":"233,150,122","122":"255,69,0","123":"255,127,80","124":"255,160,122","125":"160,82,45","126":"255,245,238","127":"139,69,19","128":"210,105,30","129":"244,164,96","130":"255,218,185","131":"205,133,63","132":"250,240,230","133":"255,140,0","134":"255,228,196","135":"222,184,135","136":"210,180,140","137":"250,235,215","138":"255,222,173","139":"255,235,205","140":"255,239,213","141":"255,165,0","142":"255,228,181","143":"245,222,179","144":"253,245,230","145":"255,250,240","146":"218,165,32","147":"255,248,220","148":"255,215,0","149":"240,230,140","150":"238,232,170","151":"255,250,205","152":"189,183,107","153":"128,128,0","154":"255,255,0","155":"255,255,224","156":"255,255,240","157":"250,250,210","158":"245,245,220","159":"85,107,47","160":"173,255,47","161":"124,252,0","162":"127,255,0","163":"0,100,0","164":"0,128,0","165":"34,139,34","166":"0,255,0","167":"50,205,50","168":"143,188,143","169":"152,251,152","170":"144,238,144","171":"240,255,240","172":"46,139,87","173":"60,179,113","174":"245,255,250","175":"0,255,127","176":"0,250,154","177":"127,255,170","178":"64,224,208","179":"32,178,170","180":"72,209,204","181":"0,128,128","182":"0,139,139","183":"47,79,79","184":"0,206,209","185":"212,242,231","186":"0,255,255","187":"175,238,238","188":"225,255,255","189":"240,255,255","190":"95,158,160","191":"176,224,230","192":"173,216,230","193":"0,191,255","194":"135,206,235","195":"135,206,250","196":"70,130,180","197":"240,248,255","198":"30,144,255","199":"112,128,144","200":"119,136,153","201":"176,196,222","202":"100,149,237","203":"65,105,225","204":"0,0,128","205":"0,0,139","206":"25,25,112","207":"0,0,205","208":"0,0,255","209":"248,248,255","210":"230,230,250","211":"72,61,139","212":"106,90,205","213":"123,104,238","214":"147,112,219","215":"138,43,226","216":"75,0,130","217":"153,50,204","218":"148,0,211","219":"186,85,211","220":"128,0,128","221":"139,0,139","222":"255,0,255","223":"255,0,255","224":"238,130,238","225":"221,160,221","226":"216,191,216","227":"218,112,214","228":"199,21,133","229":"255,20,147","230":"255,105,180","231":"219,112,147","232":"255,240,245","233":"220,20,60","234":"255,192,203","235":"255,182,193"}';
+  colorList = JSON.parse(colorList)
+
+  userActivityAnalysis()
+  function userActivityAnalysis() {
+    // user-activity-analysis
+    // JSON数据示例
+    const jsonData = [{"nickname":"健壮的钢笔","records_count":53779},{"nickname":"魁梧的大山","records_count":34603},{"nickname":"俏皮的香烟","records_count":19730},{"nickname":"孝顺的帅哥","records_count":16203},{"nickname":"轻松的绿茶","records_count":15127},{"nickname":"寂寞的宝马","records_count":14744},{"nickname":"鲜艳的大雁","records_count":13645},{"nickname":"秀丽的香水","records_count":12832},{"nickname":"哭泣的冰棍","records_count":12528},{"nickname":"贤惠的奇异果","records_count":9653},{"nickname":"温柔的眼睛","records_count":6303},{"nickname":"坚定的帽子","records_count":5637},{"nickname":"贤惠的羊","records_count":4294},{"nickname":"洁净的老师","records_count":3950},{"nickname":"爱撒娇的胡萝卜","records_count":2651},{"nickname":"鲤鱼手机","records_count":2601},{"nickname":"难过的纸鹤","records_count":1987},{"nickname":"尊敬的香氛","records_count":1934},{"nickname":"酷酷的含羞草","records_count":1780},{"nickname":"健壮的萝莉","records_count":1760}];
+
+    // 获取指定的HTML元素
+    const container = document.getElementById("user-activity-analysis");
+
+    // 循环遍历JSON数据并创建HTML元素
+    jsonData.forEach((item, index)  => {
+      // 创建表格行
+      const row = document.createElement("tr");
+
+      // 创建表格单元格，并设置文本内容
+      const cell1 = document.createElement("td");
+      cell1.textContent = index + 1;
+
+      // 创建表格单元格，并设置文本内容
+      const cell2 = document.createElement("td");
+      cell2.textContent = item.nickname;
+
+      const cell3 = document.createElement("td");
+      cell3.textContent = item.records_count;
+
+      // 将单元格添加到行中
+      row.appendChild(cell1);
+      row.appendChild(cell2);
+      row.appendChild(cell3);
+
+      // 将行添加到容器中
+      container.appendChild(row);
+    });
+  }
+
+  wreckingKing()
+  function wreckingKing() {
+    // JSON数据示例
+    const jsonData = [{"nickname":"虚拟的书包","c":225427},{"nickname":"清新的火龙果","c":79638},{"nickname":"【神秘玩家·真】","c":58695},{"nickname":"健壮的钢笔","c":58036},{"nickname":"鲜艳的大雁","c":38787},{"nickname":"畅快的河马","c":28578},{"nickname":"糊涂的奇异果","c":26402},{"nickname":"爱撒娇的胡萝卜","c":24327},{"nickname":"飞快的皮卡丘","c":20086},{"nickname":"痴情的柠檬","c":16183}];
+
+    // 获取指定的HTML元素
+    const container = document.getElementById("wrecking-king");
+
+    // 循环遍历JSON数据并创建HTML元素
+    jsonData.forEach((item, index)  => {
+      // 创建表格行
+      const row = document.createElement("tr");
+
+      // 创建表格单元格，并设置文本内容
+      const cell1 = document.createElement("td");
+      cell1.textContent = index + 1;
+
+      // 创建表格单元格，并设置文本内容
+      const cell2 = document.createElement("td");
+      cell2.textContent = item.nickname;
+
+      const cell3 = document.createElement("td");
+      cell3.textContent = item.c;
+
+      // 将单元格添加到行中
+      row.appendChild(cell1);
+      row.appendChild(cell2);
+      row.appendChild(cell3);
+
+      // 将行添加到容器中
+      container.appendChild(row);
+    });
+  }
+
+  colorUsageFrequency()
+  function colorUsageFrequency() {
+    // JSON数据示例
+    const jsonData = [{"color":"1","color_count":83066},{"color":"0","color_count":62376},{"color":"100","color_count":13041},{"color":"195","color_count":12301},{"color":"23","color_count":10919},{"color":"25","color_count":10596},{"color":"27","color_count":8250},{"color":"202","color_count":8139},{"color":"11","color_count":7044},{"color":"186","color_count":5310},{"color":"154","color_count":5097},{"color":"6","color_count":4558},{"color":"18","color_count":4411},{"color":"5","color_count":4394},{"color":"9","color_count":4352},{"color":"26","color_count":4226},{"color":"2","color_count":4103},{"color":"4","color_count":3978},{"color":"107","color_count":3816},{"color":"145","color_count":3741}];
+
+    // 获取指定的HTML元素
+    const container = document.getElementById("color-usage-frequency");
+
+    // 循环遍历JSON数据并创建HTML元素
+    jsonData.forEach((item, index)  => {
+
+      var rgb = colorList[item.color]
+
+      // 创建表格行
+      const row = document.createElement("tr");
+
+      // 创建表格单元格，并设置文本内容
+      const cell1 = document.createElement("td");
+      cell1.textContent = index + 1;
+
+      // 创建表格单元格，并设置文本内容
+      const cell2 = document.createElement("td");
+      cell2.innerHTML = `<div style="width: 15px;height: 15px;background-color: rgb(${rgb}); border: 1px solid;"></div>`
+      const cell3 = document.createElement("td");
+      cell3.textContent = item.color;
+      const cell4 = document.createElement("td");
+      cell4.textContent = item.color_count;
+
+      // 将单元格添加到行中
+      row.appendChild(cell1);
+      row.appendChild(cell2);
+      row.appendChild(cell3);
+      row.appendChild(cell4);
+
+      // 将行添加到容器中
+      container.appendChild(row);
+    });
+  }
+
+  //
+  mostActiveCoordinatePoint()
+  function mostActiveCoordinatePoint() {
+    // JSON数据示例
+    const jsonData = [{"x":806,"y":82,"count":203},{"x":836,"y":122,"count":188},{"x":810,"y":80,"count":182},{"x":805,"y":77,"count":118},{"x":0,"y":0,"count":107},{"x":837,"y":88,"count":81},{"x":838,"y":88,"count":66},{"x":820,"y":81,"count":60},{"x":895,"y":954,"count":52},{"x":655,"y":534,"count":49}];
+    // 获取指定的HTML元素
+    const container = document.getElementById("most-active-coordinate-point");
+
+    // 循环遍历JSON数据并创建HTML元素
+    jsonData.forEach((item, index)  => {
+      // 创建表格行
+      const row = document.createElement("tr");
+
+      // 创建表格单元格，并设置文本内容
+      const cell1 = document.createElement("td");
+      cell1.textContent = index + 1;
+
+      // 创建表格单元格，并设置文本内容
+      const cell2 = document.createElement("td");
+      cell2.textContent = `(${item.x},${item.y})`;
+
+      const cell3 = document.createElement("td");
+      cell3.textContent = item.count;
+
+      // 将单元格添加到行中
+      row.appendChild(cell1);
+      row.appendChild(cell2);
+      row.appendChild(cell3);
+
+      // 将行添加到容器中
+      container.appendChild(row);
+    });
+  }
+
+  // Hourly activity statistics
+  hourlyActivityStatistics()
+  function hourlyActivityStatistics() {
+// 获取canvas元素
+    const ctx = document.getElementById('hourly-activity-statistics').getContext('2d');
+
+    // 准备数据
+    const data = {
+      labels: [], // 小时标签
+      datasets: [{
+        label: '操作次数',
+        data: [], // 记录数量数据
+        backgroundColor: 'rgba(75, 192, 192, 0.2)', // 设置柱状图颜色
+        borderColor: 'rgba(75, 192, 192, 1)', // 设置柱状图边框颜色
+        borderWidth: 1, // 设置柱状图边框宽度
+        // pointRadius: 5,
+        // pointHoverRadius: 10,
+
+      }]
+    };
+
+    // 提供的数据
+    const providedData = [{"hour":0,"record_count":9361},{"hour":1,"record_count":3677},{"hour":2,"record_count":1733},{"hour":3,"record_count":381},{"hour":4,"record_count":359},{"hour":5,"record_count":69},{"hour":6,"record_count":88},{"hour":7,"record_count":30},{"hour":8,"record_count":1530},{"hour":9,"record_count":2540},{"hour":10,"record_count":8789},{"hour":11,"record_count":20430},{"hour":12,"record_count":15178},{"hour":13,"record_count":15034},{"hour":14,"record_count":21586},{"hour":15,"record_count":20714},{"hour":16,"record_count":31055},{"hour":17,"record_count":37547},{"hour":18,"record_count":36983},{"hour":19,"record_count":28738},{"hour":20,"record_count":21143},{"hour":21,"record_count":24908},{"hour":22,"record_count":17668},{"hour":23,"record_count":12914}];
+
+    // 将提供的数据转换为适合图表的格式
+    providedData.forEach(item => {
+      data.labels.push(item.hour + "点"); // 添加小时标签
+      data.datasets[0].data.push(item.record_count); // 添加记录数量数据
+    });
+
+    // 创建柱状图
+    const myChart = new Chart(ctx, {
+      type: 'bar', // 指定图表类型为柱状图
+      data: data, // 使用上面准备的数据
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  }
+</script>
+</body>
+</html>
