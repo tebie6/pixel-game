@@ -219,3 +219,11 @@ liumingyuphp@163.com
 
 前端借鉴：陈俊榕 Wolf Chen
 1. 博客：https://wolfchen.top/
+
+### 十二、开发中
+- 【多画布】功能正在测试中
+- 【自动导航】功能正在测试中
+
+---
+
+![star history](./star-history.png "star history")
