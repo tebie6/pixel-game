@@ -3,6 +3,7 @@
 <head>
     <title>一起来画像素画</title>
     <link rel="stylesheet" href="./static/pixel/css/styles.css?v=0.0.31" type="text/css"/>
+    <link rel="stylesheet" href="./static/pixel/css/introjs.min.css" type="text/css"/>
     <meta charset="UTF-8">
     <meta name="description" content="像素画小游戏, tebie6, 一起来画像素画, rplace, Rplace, r/place, R/place">
     <meta name="keywords" content="像素画小游戏, tebie6, 一起来画像素画, rplace, Rplace, r/place, R/place">
@@ -75,6 +76,7 @@
     <a href="javascript:void(0)">祝各位老板2024年发大财️💰，500W打底</a>
     <a href="/2023.html" target="_blank">👉2023年度像素画游戏报告👈</a>
     <a href="https://github.com/tebie6/pixel_game" target="_blank">GitHub项目地址</a>
+    <a href="javascript:void(0)" id="introShow">查看引导</a>
 </div>
 <div class="notice" style="display: none">提示</div>
 <div class="modal"></div>
@@ -83,6 +85,7 @@
 <script src="./static/pixel/js/e-smart-zoom-jquery.js?v=0.0.10"></script>
 <script src="./static/pixel/js/pako.min.js"></script>
 <script src="./static/pixel/js/ConnWs.js?v=0.0.16"></script>
+<script src="./static/pixel/js/intro.min.js"></script>
 <script>
     $(document).ready(function () {
         var serverHost = window.location.hostname;
@@ -148,6 +151,56 @@
                     console.log('complete', xhr)
                 }
             })
+        }
+
+        // 显示引导
+        var introShowStatus = 0
+        function introShow() {
+            if (introShowStatus == 1) {
+                return
+            }
+            introShowStatus = 1
+            introJs().setOptions({
+                // showStepNumbers: true,   // 显示步骤数
+                exitOnOverlayClick: false,  // 点击遮罩层不关闭
+                overlayOpacity: 0.7, // 透明度
+                dontShowAgain: true, // 显示不再提醒
+                dontShowAgainLabel: "不再提醒",
+                showBullets: false, // 没有子弹条
+                showProgress: true, // 显示进度条
+                nextLabel: '继续',
+                prevLabel: '上一步',
+                skipLabel: '跳过',
+                doneLabel: '完成',
+                steps: [
+                    {
+                        element: document.querySelector('#posel'),
+                        intro: '这是位置信息！'
+                    },
+                    {
+                        element: document.querySelector('#nickname'),
+                        intro: '你的昵称！'
+                    },
+                    {
+                        element: document.querySelector('#helpbtn'),
+                        intro: '帮助按钮！'
+                    },
+                    {
+                        element: document.querySelector('#morebtn'),
+                        intro: '更多按钮！'
+                    },
+                    {
+                        element: document.querySelector('#chatbtn'),
+                        intro: '聊天、发弹幕！'
+                    },
+                    {
+                        element: document.querySelector('#footer'),
+                        intro: '选色板！选择颜色部署'
+                    },
+                ]
+            }).onbeforeexit(function () {
+                // return false;
+            }).start();
         }
 
         var wsObj = null;
@@ -1068,6 +1121,7 @@
                         // 防止闪屏
                         setTimeout(function (){
                             $(".bigContent").hide();
+                            introShow()
                         }, 500)
                     };
                     img.src = window.URL.createObjectURL(blob);
@@ -1081,6 +1135,13 @@
 
             xhr.send();
         }
+
+        // 查看引导
+        $("#introShow").click(function () {
+            document.cookie = 'introjs-dontShowAgain=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+            introShowStatus = 0
+            introShow()
+        })
     });
 </script>
 </html>
