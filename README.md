@@ -223,7 +223,7 @@ liumingyuphp@163.com
 ### 十二、开发中
 - 【多画布】功能正在测试中
 - 【自动导航】功能正在测试中
+- 【用户连接信息存储】功能正在测试中
 
 ---
-
-![star history](./star-history.png "star history")
+[![Star History Chart](https://api.star-history.com/svg?repos=tebie6/pixel-game&type=Date)](https://star-history.com/#tebie6/pixel-game&Date)
