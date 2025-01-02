@@ -5,7 +5,8 @@
 
 ##### 浏览地址：[https://game.tebie6.com/](https://game.tebie6.com/)
 ##### 项目地址：[https://github.com/tebie6/pixel-game](https://github.com/tebie6/pixel-game)
-##### 语雀：[https://www.yuque.com/u39134872/zyw7tq/xmds30nc982hhr28](https://www.yuque.com/u39134872/zyw7tq/xmds30nc982hhr28)
+##### 语雀：[https://www.yuque.com/u39134872/zyw7tq/xmds30nc982hhr28?singleDoc](https://www.yuque.com/u39134872/zyw7tq/xmds30nc982hhr28?singleDoc)
+
 
 #### 项目目录：
 ```
